@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import math
 import rospy
 from geomtery_msgs.msg import Twist
 from std_msgs.msg import Int64
@@ -13,36 +14,36 @@ class TwistConverter():
         rospy.init_node('TwistConverter')
         rospy.Subscriber('motor/twist/cmd_vel', Twist, self.callback)
 
-        self.rightPub = rospy.Publisher('left_motor/cmd_vel', Int64, queue_size=10)
-        self.leftPub = rospy.Publisher('right_motor/cmd_vel', Int64, queue_size=10)
+        self.right_pub = rospy.Publisher('left_motor/cmd_vel', Int64, queue_size=10)
+        self.left_pub = rospy.Publisher('right_motor/cmd_vel', Int64, queue_size=10)
 
-    def main_twistConverter(self):
+    def main_TwistConverter(self):
         rospy.spin()
 
     def callback(self, message):
         self.received = message
         self.right, self.left = self.convert(self.received)
 
-        self.rightPub.publish(self.right)
-        self.leftPub.publish(self.left)
+        self.right_pub.publish(self.right)
+        self.left_pub.publish(self.left)
 
     def convert(self, data):
-        wheelSize = 0.075
-        axleLength = 0.35
+        wheel_size = 0.075
+        axle_length = 0.35
 
         v = data.linear.x
         omega = received_data.angular.z
 
-        v_r = (omega * axleLength + 2 * v) / 2
-        v_l = (omega * axleLength - 2 * v) / (-2)
+        v_r = (omega * axle_length + 2 * v) / 2
+        v_l = (omega * axle_length - 2 * v) / (-2)
 
-        v_r /= (wheelSize * 2 * 3.14)
-        v_l /= (wheelSize * 2 * 3.14)
+        v_r /= (wheel_size * 2 * math.pi)
+        v_l /= (wheel_size * 2 * math.pi)
 
-        r_rpm = 60 * v_r
-        l_rpm = 60 * v_l
+        rpm_r = 60 * v_r
+        rpm_l = 60 * v_l
 
-        return r_rpm, l_rpm
+        return rpm_r, rpm_l
 
 Converter = TwistConverter()
 Converter.main_TwistConverter()
