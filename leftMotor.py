@@ -39,7 +39,7 @@ class motor_control():
   def callback(self, data):
     # Find duty
     self.rpm = data.data
-    duty = selfrpm2duty(self.rpm)
+    duty = self.rpm2duty(self.rpm)
     rospy.loginfo('RPM: ' + str(self.rpm))
     rospy.loginfo('Duty: ' + str(duty))
 
@@ -58,13 +58,16 @@ class motor_control():
       GPIO.output(self.pin_input2, 1)
 
     # Set PWM
+    rospy.loginfo('Updating motor speed')
     self.pwm.ChangeDutyCycle(duty)
 
   # TODO: Add min speed
   def rpm2duty(self, rpm):
-    d = rpm / 100
+    d = rpm
+    if (d > 100):
+      d = 100
     return d
 
-if __name__ = '__main__'
+if __name__ == '__main__':
   Motor_Control = motor_control()
   Motor_Control.motor_main()

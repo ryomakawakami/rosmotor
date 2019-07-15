@@ -35,7 +35,10 @@ class Twist2int64():
     v_r = v_r/(wheel_size * 2 * 3.14)
     v_l = v_l/(wheel_size * 2 * 3.14)
 
-    return v_r, v_l
+    rpm_r = 60 * v_r
+    rpm_l = 60 * v_l
+
+    return rpm_r, rpm_l
 
 # Main
 Convert = Twist2int64()
