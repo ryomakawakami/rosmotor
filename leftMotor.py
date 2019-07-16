@@ -16,7 +16,7 @@ class motor_control():
 
     # Set up node
     rospy.init_node('motor_test')
-    rospy.Subscriber('right_motor/cmd_vel', Int64, self.callback)
+    rospy.Subscriber('left_motor/cmd_vel', Int64, self.callback)
     rospy.loginfo('Ready')
 
     # Set up GPIO
@@ -63,9 +63,10 @@ class motor_control():
 
   # TODO: Add min speed
   def rpm2duty(self, rpm):
-    d = rpm
-    if (d > 100):
-      d = 100
+    d = rpm / 2.38
+    if abs(d) > 100:
+      if d > 0: d = 100
+      else: d = -100
     return d
 
 if __name__ == '__main__':
