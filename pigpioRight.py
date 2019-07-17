@@ -5,17 +5,17 @@ import time
 import rospy
 from std_msgs.msg import Int64
 
-class LeftMotorControl():
+class RightMotorControl():
   def __init__(self):
     # Initialize
     self.dir = True
-    self.pin_pwm = 16
-    self.pin_input1 = 20
-    self.pin_input2 = 21
+    self.pin_pwm = 13
+    self.pin_input1 = 19
+    self.pin_input2 = 26
 
     # Set up node
-    rospy.init_node('left_motor_test')
-    rospy.Subscriber('left_motor/cmd_vel', Int64, self.callback)
+    rospy.init_node('right_motor_test')
+    rospy.Subscriber('right_motor/cmd_vel', Int64, self.callback)
     rospy.loginfo('Ready')
 
     # Set up GPIO
@@ -61,5 +61,5 @@ class LeftMotorControl():
 
 if __name__ == '__main__':
   pi = pigpio.pi()
-  left = LeftMotorControl()
-  left.motor_main()
+  right = RightMotorControl()
+  right.motor_main()
