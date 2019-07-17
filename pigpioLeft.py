@@ -5,12 +5,7 @@ import time
 import rospy
 from std_msgs.msg import Int64
 
-INPUT = 0
-OUTPUT = 1
-SERVO = 2
-PWM = 3
-
-class motor_control():
+class LeftMotorControl():
   def __init__(self):
     # Initialize
     self.dir = True
@@ -66,5 +61,5 @@ class motor_control():
 
 if __name__ == '__main__':
   pi = pigpio.pi()
-  Motor_Control = motor_control()
-  Motor_Control.motor_main()
+  left = LeftMotorControl()
+  left.motor_main()

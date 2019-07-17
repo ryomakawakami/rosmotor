@@ -13,7 +13,7 @@ class Twist2int64():
     self.pub_right = rospy.Publisher('right_motor/cmd_vel', Int64, queue_size=10)
     self.pub_left = rospy.Publisher('left_motor/cmd_vel', Int64, queue_size=10)
 
-  def main_twist2int64(self):
+  def twist2int64_main(self):
     rospy.spin()
 
   def callback(self, message):
@@ -40,6 +40,6 @@ class Twist2int64():
 
     return rpm_r, rpm_l
 
-# Main
-Convert = Twist2int64()
-Convert.main_twist2int64()
+if __name__ == '__main__':
+  twist2int64 = Twist2int64()
+  twist2int64.twist2int64_main()
