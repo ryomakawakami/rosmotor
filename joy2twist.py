@@ -8,16 +8,16 @@ class Joy2Twist():
   def __init__(self):
     global pub
     pub = rospy.Publisher('motor/twist/cmd_vel', Twist)
-    rospy.Subscriber('joy', Joy, callback)
+    rospy.Subscriber('joy', Joy, self.callback)
     rospy.init_node('joy2twist')
 
-  def callback(data):
+  def callback(self, data):
     twist = Twist()
     twist.linear.x = data.axes[1]
     twist.angular.x = data.axes[2]
     pub.publish(twist)
 
-  def joy2twist_main():
+  def joy2twist_main(self):
     rospy.spin()
 
 if __name__ == '__main__':
