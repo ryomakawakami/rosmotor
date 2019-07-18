@@ -29,7 +29,7 @@ class Motor():
         self.rpm = r
         self.duty = self.rpm2Duty(self.rpm)
         self.setDuty(self.duty)
-        return self.duty
+        return abs(self.duty)
 
     # Set duty
     def setDuty(self, d):
