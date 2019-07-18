@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import motor
+import motorLib as motor
 import rospy
 from std_msgs.msg import Int64
 
