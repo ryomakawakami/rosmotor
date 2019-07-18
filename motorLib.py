@@ -38,6 +38,7 @@ class Motor():
             self.setOutput([1, 0])
         else:
             self.setOutput([0, 1])
+            d *= -1
         # Set PWM
         self.pi.set_PWM_dutycycle(self.port[PWM], d)
 
