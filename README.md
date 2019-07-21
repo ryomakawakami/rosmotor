@@ -10,7 +10,7 @@ Turn on Pi. Connect to wifi network (ubiquityrobotXXXX, XXXX is first four digit
 Sudo password is ```ubuntu```.
 ```sudo systemctl disable magni-base``` to disable Ubiquity Robotics scripts.
 
-Set static IP on machines. Write into /etc/hosts on all machines. Ping all to ensure connection.
+Set static IP on machines. Write into /etc/hosts on all machines (```C:\Windows\System32\Drivers\etc\hosts``` in Windows). Ping all to ensure connection.
 ```
 raspberrypi 169.254.161.92
 ubuntu      169.254.161.100
@@ -84,3 +84,16 @@ Install ROS node with ```sudo apt install ros-kinetic-usb-cam```
 Start ```roscore``` and ```roslaunch usb_cam usb_cam-test.launch```
 
 View image with ```rosrun image_view image_view image:=/usb_cam/image_raw```
+
+### MATLAB
+
+Connect to ubuntu master.
+
+```
+setenv('ROS_HOSTNAME', '169.254.161.150')
+setenv('ROS_MASTER_URI', 'http://169.254.161.100:11311')
+setenv('ROS_IP', '169.254.161.150')
+rosinit
+```
+
+Disable firewall settings for port in settings (in anti-virus software too).
