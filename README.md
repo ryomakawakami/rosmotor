@@ -108,5 +108,8 @@ Stop MATLAB node with ```rosshutdown```
 Disable firewall settings for port in settings (in anti-virus software too).
 
 **PROBLEM**
+
 ```rostopic echo /position``` doesn't show message published in MATLAB. Only MATLAB can see.
 Doing ```rostopic pub /position ...``` shows message on ubuntu and raspberrypi, but MATLAB doesn't see.
+
+Potential solution is fixing /etc/hosts in Windows file since ```ping windows``` doesn't work.
