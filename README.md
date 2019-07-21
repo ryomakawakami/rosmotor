@@ -29,39 +29,39 @@ Remove
 
 Add
 
-```export ROS_HOSTNAME=raspberrypi```
-
-```export ROS_MASTER_URI=http://ubuntu:11311```
-
-```export ROS_IP=169.254.161.92```
+```
+export ROS_HOSTNAME=raspberrypi
+export ROS_MASTER_URI=http://ubuntu:11311
+export ROS_IP=169.254.161.92
+```
 
 **Setup .bashrc on Ubuntu laptop**
 
 Add
 
-```export ROS_HOSTNAME=ubuntu```
-
-```export ROS_MASTER_URI=http://ubuntu:11311```
-
-```export ROS_IP=169.254.161.100```
+```
+export ROS_HOSTNAME=ubuntu
+export ROS_MASTER_URI=http://ubuntu:11311
+export ROS_IP=169.254.161.100
+```
 
 ### Test
 
-On ubuntu ```roscore```
+On ubuntu: ```roscore```
 
 *Verify one direction*
 
-On raspberrypi ```rosrun rospy_tutorials listener.py```
+On raspberrypi: ```rosrun rospy_tutorials listener.py```
 
-On ubuntu```rosrun rospy_tutorials talker.py```
+On ubuntu: ```rosrun rospy_tutorials talker.py```
 
 *Verify other direction*
 
-On raspberrypi```rosrun rospy_tutorials listener.py```
+On raspberrypi: ```rosrun rospy_tutorials listener.py```
 
-On ubuntu```rosrun rospy_tutorials talker.py```
+On ubuntu: ```rosrun rospy_tutorials talker.py```
 
-If only one direction works, check ROS_HOSTNAME on both machines.
+If only one direction works, check ```ROS_HOSTNAME``` on both machines.
 
 **Useful commands**
 
