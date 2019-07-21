@@ -113,3 +113,7 @@ Disable firewall settings for port in settings (in anti-virus software too).
 Doing ```rostopic pub /position ...``` shows message on ubuntu and raspberrypi, but MATLAB doesn't see.
 
 Potential solution is fixing /etc/hosts in Windows file since ```ping windows``` doesn't work.
+
+ipconfig /flushdns
+
+https://serverfault.com/questions/452268/hosts-file-ignored-how-to-troubleshoot
