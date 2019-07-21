@@ -72,3 +72,15 @@ If only one direction works, check ```ROS_HOSTNAME``` on both machines.
 ```rosnode list```
 
 ```rosnode info [node]```
+
+### Camera
+
+Reference http://roboticsweekends.blogspot.com/2017/12/how-to-use-usb-camera-with-ros-on.html
+
+Check if camera is recognized with ```lsusb```
+
+Install ROS node with ```sudo apt install ros-kinetic-usb-cam```
+
+Start ```roscore``` and ```roslaunch usb_cam usb_cam-test.launch```
+
+View image with ```rosrun image_view image_view image:=/usb_cam/image_raw```
