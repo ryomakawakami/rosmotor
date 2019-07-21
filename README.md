@@ -12,9 +12,9 @@ Sudo password is ```ubuntu```.
 
 Set static IP on machines. Write into /etc/hosts on all machines (```C:\Windows\System32\Drivers\etc\hosts``` in Windows). Ping all to ensure connection.
 ```
-raspberrypi 169.254.161.92
-ubuntu      169.254.161.100
-windows     169.254.161.150
+169.254.161.92  raspberrypi
+169.254.161.100 ubuntu
+169.254.161.150 windows
 ```
 
 Disable firewall ```sudo ufw disable```
@@ -87,13 +87,26 @@ View image with ```rosrun image_view image_view image:=/usb_cam/image_raw```
 
 ### MATLAB
 
-Connect to ubuntu master.
+Start MATLAB node and open the corresponding port in firewall settings.
 
 ```
-setenv('ROS_HOSTNAME', '169.254.161.150')
+setenv('ROS_HOSTNAME', 'windows')
 setenv('ROS_MASTER_URI', 'http://169.254.161.100:11311')
 setenv('ROS_IP', '169.254.161.150')
 rosinit
 ```
 
+Create publisher to test connection.
+
+```
+[pub,msg] = rospublisher('position','geometry_msgs/Point');
+msg.X = 100, msg.Y = 200, pub.send(msg);
+```
+
+Stop MATLAB node with ```rosshutdown```
+
 Disable firewall settings for port in settings (in anti-virus software too).
+
+**PROBLEM**
+```rostopic echo /position``` doesn't show message published in MATLAB. Only MATLAB can see.
+Doing ```rostopic pub /position ...``` shows message on ubuntu and raspberrypi, but MATLAB doesn't see.
