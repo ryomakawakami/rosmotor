@@ -106,3 +106,7 @@ msg.X = 100, msg.Y = 200, pub.send(msg);
 Stop MATLAB node with ```rosshutdown```
 
 Disable firewall settings for port in settings (in anti-virus software too).
+
+### GoogLeNet MATLAB
+
+https://www.mathworks.com/help/deeplearning/examples/classify-images-from-webcam-using-deep-learning.html
