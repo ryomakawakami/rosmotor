@@ -10,7 +10,7 @@ Turn on Pi. Connect to wifi network (ubiquityrobotXXXX, XXXX is first four digit
 Sudo password is ```ubuntu```.
 ```sudo systemctl disable magni-base``` to disable Ubiquity Robotics scripts.
 
-Set static IP on machines. Write into /etc/hosts on all machines (```C:\Windows\System32\Drivers\etc\hosts``` in Windows). Ping all to ensure connection.
+Set static IP on machines. Write into /etc/hosts on all machines (edit ```C:\Windows\System32\Drivers\etc\hosts``` as administrator in Notepad++ in Windows, being careful of whitespace). Ping all to ensure connection.
 ```
 169.254.161.92  raspberrypi
 169.254.161.100 ubuntu
@@ -91,7 +91,7 @@ Start MATLAB node and open the corresponding port in firewall settings.
 
 ```
 setenv('ROS_HOSTNAME', 'windows')
-setenv('ROS_MASTER_URI', 'http://169.254.161.100:11311')
+setenv('ROS_MASTER_URI', 'http://ubuntu:11311')
 setenv('ROS_IP', '169.254.161.150')
 rosinit
 ```
@@ -106,14 +106,3 @@ msg.X = 100, msg.Y = 200, pub.send(msg);
 Stop MATLAB node with ```rosshutdown```
 
 Disable firewall settings for port in settings (in anti-virus software too).
-
-**PROBLEM**
-
-```rostopic echo /position``` doesn't show message published in MATLAB. Only MATLAB can see.
-Doing ```rostopic pub /position ...``` shows message on ubuntu and raspberrypi, but MATLAB doesn't see.
-
-Potential solution is fixing /etc/hosts in Windows file since ```ping windows``` doesn't work.
-
-ipconfig /flushdns
-
-https://serverfault.com/questions/452268/hosts-file-ignored-how-to-troubleshoot
