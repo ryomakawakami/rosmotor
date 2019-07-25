@@ -1,0 +1,30 @@
+Simple loop template with blocking:
+
+% Setup
+rosinit;
+mySub = rossubscriber('/sub_topic');
+[myPub, pubMsg] = rospublisher('/pub_topic');
+
+% Loop
+r = rosrate(5)
+while(r.TotalElapsedTime < 10)
+  recvMsg = mySub.LatestMessage;
+
+  ctrlOut = myAlgorithm(recvMsg);
+
+  pubMsg.FieldName = ctrlOut;
+  send(myPub, pubMsg);
+
+  waitfor(r);
+end
+
+
+
+Advanced MATLAB scheduling:
+
+Asynchronous execution
+mySub = rossubscriber('/sub_topic', @callbackFucn)
+
+Scheduled execution
+myTimer = timer('TimerFcn', @callbackFcn, 'ExecutionMode', 'fixedRate', 'Period', 0.1);
+start(myTimer);
