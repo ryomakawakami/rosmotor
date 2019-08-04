@@ -110,3 +110,5 @@ Disable firewall settings for port in settings (in anti-virus software too).
 ### GoogLeNet MATLAB
 
 https://www.mathworks.com/help/deeplearning/examples/classify-images-from-webcam-using-deep-learning.html
+
+## Shorting BCM ports 5 and 6 can be used as power off and power on. Try not to use on robot.
